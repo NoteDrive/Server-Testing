@@ -14,15 +14,15 @@ const io = socketIo(http, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
-    allowedHeaders: ["Access-Control-Allow-Origin"],
-    credentials: false,
+    transports : ['websocket', 'polling'],
+    credentials: true,
   },
+  allowEIO3: true,
+  pingTimeout: 60000,
 });
 
 let rooms = {};
 let messages = {};
-
-io.set("transports", ["websocket"]);
 
 io.on("connection", (socket) => {
   socket.on("new-room", (room, user) => {
