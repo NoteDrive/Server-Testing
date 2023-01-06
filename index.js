@@ -22,7 +22,7 @@ const io = socketIo(http, {
 let rooms = {};
 let messages = {};
 
-io.set("transports", ["websocket", "polling"]);
+io.set("transports", ["websocket"]);
 
 io.on("connection", (socket) => {
   socket.on("new-room", (room, user) => {
