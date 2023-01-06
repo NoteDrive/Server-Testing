@@ -18,13 +18,19 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"
+      integrity="sha512-kWv0sOT0tLlBzd5MPS2F8wZLuSFAZZ43SlpG/vIAjWAsafdtZ+9KJT9l1c6Bd7kXW90qQ8Peiu2mg8VIsAZkOg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </head>
 
   <body class="container bg-dark">
     <textarea name="textarea" id="mytest" cols="200" rows="35"></textarea>
-    <script src="https://elated-tan-cowboy-boots.cyclic.app/socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
-      var socket = io("https://elated-tan-cowboy-boots.cyclic.app", {
+      var socket = io({
         transports: ["polling"],
         allowedHeaders: ["Access-Control-Allow-Origin"],
       });
