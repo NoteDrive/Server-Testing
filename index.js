@@ -15,6 +15,7 @@ const io = socketIo(http, {
     origin: "*",
     methods: ["GET", "POST"],
     transports: ["polling"],
+    allowedHeaders: ["Access-Control-Allow-Origin"],
     credentials: true,
   },
   allowEIO3: true,

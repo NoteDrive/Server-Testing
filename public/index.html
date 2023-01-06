@@ -11,14 +11,23 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <script src='https://code.jquery.com/jquery.js'></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"
+      integrity="sha512-49SFe+4y+IWzCJ4lJGR2rrgclCE5bDvKTqLaRpwnCPCJHgTrS0XdQTX/HYDbB/0Hyw/uao44VHWONggnFfmvzw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </head>
 
   <body class="container bg-dark">
     <textarea name="textarea" id="mytest" cols="200" rows="35"></textarea>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://elated-tan-cowboy-boots.cyclic.app/socket.io/socket.io.js"></script>
     <script>
-      var socket = io();
+      var socket = io("https://elated-tan-cowboy-boots.cyclic.app", {
+        transports: ["polling"],
+        allowedHeaders: ["Access-Control-Allow-Origin"],
+      });
       const textarea = document.getElementById("mytest");
 
       textarea.addEventListener("input", (e) => {
