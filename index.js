@@ -1,25 +1,11 @@
-const cors = require("cors");
 const express = require("express");
-const { createServer } = require("http");
-const { Server } = require("socket.io");
-
 const app = express();
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
+const port = process.env.PORT || 3000;
 
-app.use(express.json());
-app.use(cors());
-app.use(require("./router"));
-
-const http = createServer(app);
-const io = new Server(http, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-    transports: ["polling"],
-    allowedHeaders: ["Access-Control-Allow-Origin"],
-    credentials: true,
-  },
-  allowEIO3: true,
-  pingTimeout: 60000,
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
 });
 
 let rooms = {};
@@ -38,4 +24,6 @@ io.on("connection", (socket) => {
   });
 });
 
-http.listen(5000);
+http.listen(port, () => {
+  console.log(`listening on *:${port}`);
+});

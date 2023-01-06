@@ -11,43 +11,22 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"
-      integrity="sha512-49SFe+4y+IWzCJ4lJGR2rrgclCE5bDvKTqLaRpwnCPCJHgTrS0XdQTX/HYDbB/0Hyw/uao44VHWONggnFfmvzw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"
-      integrity="sha512-kWv0sOT0tLlBzd5MPS2F8wZLuSFAZZ43SlpG/vIAjWAsafdtZ+9KJT9l1c6Bd7kXW90qQ8Peiu2mg8VIsAZkOg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
   </head>
-
   <body class="container bg-dark">
     <textarea name="textarea" id="mytest" cols="200" rows="35"></textarea>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      var socket = io({
-        transports: ["polling"],
-        allowedHeaders: ["Access-Control-Allow-Origin"],
-      });
+      const socket = io();
       const textarea = document.getElementById("mytest");
-
       textarea.addEventListener("input", (e) => {
         socket.emit("send", Room, e.target.value);
       });
-
       Room = prompt("Enter your Room Name to join");
       User = prompt("Enter your Name to join");
-
       socket.emit("new-room", Room, User);
       socket.on("room", (data) => {
         textarea.value = data;
       });
-
       socket.on("receive", (data) => {
         textarea.value = data;
       });
