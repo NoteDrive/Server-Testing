@@ -16,7 +16,9 @@
     <textarea name="textarea" id="mytest" cols="200" rows="35"></textarea>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      const socket = io();
+      const socket = io({
+        transports: ["websocket"],
+      });
       const textarea = document.getElementById("mytest");
       textarea.addEventListener("input", (e) => {
         socket.emit("send", Room, e.target.value);
