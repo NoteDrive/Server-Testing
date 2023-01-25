@@ -20,11 +20,11 @@
         transports: ["websocket"],
       });
       const textarea = document.getElementById("mytest");
+      Room = prompt("Enter your Room Name to join");
+      User = prompt("Enter your Name to join");
       textarea.addEventListener("input", (e) => {
         socket.emit("send", Room, e.target.value);
       });
-      Room = prompt("Enter your Room Name to join");
-      User = prompt("Enter your Name to join");
       socket.emit("new-room", Room, User);
       socket.on("room", (data) => {
         textarea.value = data;
